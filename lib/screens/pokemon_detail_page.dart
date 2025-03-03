@@ -50,29 +50,15 @@ class _PokemonDetailPageState extends State<PokemonDetailPage> {
             ? const CircularProgressIndicator()
             : Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
                 children: [
                   Hero(
                     tag: widget.name,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black26,
-                            blurRadius: 20,
-                            spreadRadius: 2,
-                          )
-                        ],
-                      ),
-                      child: ClipOval(
-                        child: Image.network(
-                          pokemonData!['sprites']['other']['official-artwork']
-                              ['front_default'],
-                          height: 200,
-                          fit: BoxFit.cover,
-                        ),
+                    child: ClipOval(
+                      child: Image.network(
+                        pokemonData!['sprites']['other']['official-artwork']
+                            ['front_default'],
+                        height: 200,
+                        fit: BoxFit.cover,
                       ),
                     ),
                   ),
@@ -84,15 +70,14 @@ class _PokemonDetailPageState extends State<PokemonDetailPage> {
                       borderRadius: BorderRadius.circular(20),
                       boxShadow: [
                         BoxShadow(
+                          // ignore: deprecated_member_use
                           color: Colors.grey.withOpacity(0.3),
                           blurRadius: 10,
                           spreadRadius: 3,
-                          offset: const Offset(0, 5),
                         )
                       ],
                     ),
                     child: Column(
-                      mainAxisSize: MainAxisSize.min,
                       children: [
                         const Text(
                           "Abilities",
@@ -102,16 +87,9 @@ class _PokemonDetailPageState extends State<PokemonDetailPage> {
                         const SizedBox(height: 10),
                         Wrap(
                           spacing: 10,
-                          runSpacing: 10,
-                          alignment: WrapAlignment.center,
                           children: (pokemonData!['abilities'] as List)
                               .map((ability) => Chip(
-                                    label: Text(
-                                      ability['ability']['name'],
-                                      style: const TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w500),
-                                    ),
+                                    label: Text(ability['ability']['name']),
                                     backgroundColor: Colors.blueGrey[200],
                                   ))
                               .toList(),
